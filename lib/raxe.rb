@@ -1,7 +1,9 @@
 # main function lives in here
+require "raxe/tasks"
 
 class Raxe
-	@@output_path = File.join( Dir.pwd , "tests" )
+	
+	@@output_path = File.join( Dir.pwd , "raxe/src" )
 	
 	def self.out_path
 		return @@output_path

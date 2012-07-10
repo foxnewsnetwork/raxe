@@ -7,7 +7,7 @@ describe Raxe do
 				Raxe.out_path.should_not be_nil
 			end # it
 			it "should have the default output path set to javascripts/raxe" do
-				Raxe.out_path.should eq( File.join( Dir.pwd, "tests" ) )
+				Raxe.out_path.should eq( File.join( Dir.pwd, "raxe/src" ) )
 			end # it
 			it "should allow for changing the output directory" do
 				Raxe.out_path = File.dirname( __FILE__ ) 
@@ -19,7 +19,7 @@ describe Raxe do
 		before(:each) do
 			@package = "package"
 			@file = "file"
-			Raxe.out_path = File.join( Dir.pwd, "tests" )
+			Raxe.out_path = File.join( Dir.pwd, "raxe/src" )
 		end # before
 		it "should generate the package directory, files, and associated items" do
 			Raxe.generate( @package, @file )

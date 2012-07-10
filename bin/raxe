@@ -1,4 +1,2 @@
-#!/usr/bin/env ruby
-
 require "raxe"
-Raxe.generate( ARGV[0], ARGV[1] )
+exit Raxe.generate( ARGV[0], ARGV[1] )
