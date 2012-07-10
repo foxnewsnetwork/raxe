@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/raxe",
     "lib/raxe.rb",
+    "raxe.gemspec",
     "spec/raxe_spec.rb",
     "test/helper.rb",
     "test/test_raxe.rb"
