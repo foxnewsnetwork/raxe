@@ -1,6 +1,6 @@
 = raxe
 
-Description goes here.
+haxe-based javascript engine generator written in ruby for use in rails applications.
 
 == Contributing to raxe
  
