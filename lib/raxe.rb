@@ -1,6 +1,4 @@
 # main function lives in here
-
-
 class Raxe
 	
 	@@output_path = File.join( Dir.pwd , "raxe/src" )

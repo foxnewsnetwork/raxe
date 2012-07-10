@@ -17,11 +17,12 @@ Jeweler::Tasks.new do |gem|
   gem.name = "raxe"
   gem.homepage = "http://github.com/foxnewsnetwork/raxe"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{haxe-based javascript generator engine for ruby on rails}
+  gem.description = %Q{Written as a ruby gem, raxe is a series of macros for writing simpler haxe code for javascript compilation}
   gem.email = "foxnewsnetwork@gmail.com"
   gem.authors = ["Yuki Nagato"]
   # dependencies defined in Gemfile
+  gem.add_dependency 'colorize'
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -52,9 +53,4 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-# Take out the following line in production
-$: << File.expand_path(File.dirname(__FILE__) + "/lib")
-require "raxe"
-Raxe::Tasks.new do |raxe|
 
-end # Rake::RaxeTasks
