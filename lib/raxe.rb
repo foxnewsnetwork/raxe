@@ -1,5 +1,5 @@
 # main function lives in here
-require "raxe/tasks"
+
 
 class Raxe
 	
@@ -63,3 +63,5 @@ class Raxe
 			return File.join( path, file.capitalize + ".hx" )
 		end # self.gen
 end # Raxe
+
+require "raxe/tasks"
