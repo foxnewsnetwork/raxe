@@ -1,4 +1,5 @@
 # main function lives in here
+
 require "raxe/tasks"
 
 class Raxe
