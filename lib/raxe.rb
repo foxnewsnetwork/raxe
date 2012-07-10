@@ -1,3 +1,5 @@
+require "raxe/tasks"
+
 # main function lives in here
 class Raxe
 	
@@ -37,6 +39,7 @@ class Raxe
 		data_content = "typedef #{file.capitalize}Data = { \n"
 		data_content += "} // #{file.capitalize}Data "
 		self.append2file( data, data_content )
+		return 0
 	end # self.generate
 	
 	private
@@ -49,7 +52,7 @@ class Raxe
 		def self.gen( package, file )
 			path = File.join( self.out_path , package )
 			Dir.chdir( self.out_path )
-			Dir.mkdir( path ) unless FileTest.exists? ( path )
+			Dir.mkdir( path ) unless FileTest.exists?( path )
 			Dir.chdir( path )
 			if FileTest.exists?( file.capitalize + ".hx" )
 				puts "Error: the package + file combo you've specified already exists!"
@@ -62,4 +65,4 @@ class Raxe
 		end # self.gen
 end # Raxe
 
-require "raxe/tasks"
+

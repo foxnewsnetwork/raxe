@@ -53,4 +53,8 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
+$: << File.join( File.dirname( __FILE__ )  , "lib" )
+require "raxe"
+Raxe::Tasks.new do |raxe|
 
+end # raxe
