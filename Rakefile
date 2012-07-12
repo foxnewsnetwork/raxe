@@ -17,10 +17,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "raxe"
   gem.homepage = "http://github.com/foxnewsnetwork/raxe"
   gem.license = "MIT"
-  gem.summary = %Q{haxe-based javascript generator engine for ruby on rails}
+  gem.summary = %Q{haxe-based javascript generator engine for ruby on rails (current under development)}
   gem.description = %Q{Written as a ruby gem, raxe is a series of macros for writing simpler haxe code for javascript compilation}
   gem.email = "foxnewsnetwork@gmail.com"
-  gem.authors = ["Yuki Nagato"]
+  gem.authors = ["Yuki Nagato", "Madotsuki"]
   # dependencies defined in Gemfile
   gem.add_dependency 'colorize'
 end
