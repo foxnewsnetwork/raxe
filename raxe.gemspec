@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = "raxe"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Yuki Nagato"]
+  s.authors = ["Yuki Nagato", "Madotsuki"]
   s.date = "2012-07-12"
   s.description = "Written as a ruby gem, raxe is a series of macros for writing simpler haxe code for javascript compilation"
   s.email = "foxnewsnetwork@gmail.com"
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "bin/raxe",
     "lib/raxe.rb",
     "raxe.gemspec",
+    "spec/commands/raxe_command_spec.rb",
     "spec/generator/raxe_generator_spec.rb",
     "spec/installer/raxe_installer_spec.rb",
     "spec/raxe_object_spec.rb",
@@ -38,7 +39,7 @@ Gem::Specification.new do |s|
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
-  s.summary = "haxe-based javascript generator engine for ruby on rails"
+  s.summary = "haxe-based javascript generator engine for ruby on rails (current under development)"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
