@@ -1,68 +1,55 @@
+require "raxe/installer"
+require "raxe/generator"
 require "raxe/tasks"
 
-# main function lives in here
+# Raxe class
 class Raxe
+	attr_reader :paths, :setup_flag
 	
-	@@output_path = File.join( Dir.pwd , "raxe/src" )
-	
-	def self.out_path
-		return @@output_path
-	end #  self.out_path
-	
-	def self.out_path=( path )
-		@@output_path = path
-	end # self.out_path
-	
-	def self.generate( package, file )
-		# Step 1 : Generating files
-		original = self.gen(package, file)
-		spec = self.gen(package + "spec", file + "Spec")
-		data = self.gen(package + "data", file + "Data")
+	def initialize
+		# Step 1: Checks for a conf file to load
+		@paths = {}
+		p_check_conf
 		
-		# Step 1.5: Generating content
-		original_content = "import #{package}data.#{file.capitalize}Data;\n"
-		original_content += "class #{file.capitalize} { \n"
-		original_content += "\tprivate var #{file}data : #{file.capitalize}Data; \n"
-		original_content += "\t public function new () { } // new \n"
-		original_content += "} // #{file.capitalize}"
-		# Step 2: Writing content
-		self.append2file( original, original_content)
-		
-		spec_content = "import #{package}data.#{file.capitalize}Data;\n"
-		spec_content += "import #{package}.#{file.capitalize};\n"
-		spec_content += "class #{file.capitalize}Spec extends haxespec.FuryTestCase { \n"
-		spec_content += "\t public override function setup () { } // setup \n"
-		spec_content += "\t public override function tearDown () { } // tearDown \n"
-		spec_content += "} // #{file.capitalize}Spec"
-		self.append2file( spec, spec_content )
-		
-		data_content = "typedef #{file.capitalize}Data = { \n"
-		data_content += "} // #{file.capitalize}Data "
-		self.append2file( data, data_content )
-		return 0
-	end # self.generate
+		# Step 2: Setup the components
+		@installer = Raxe::Installer.new( self )
+		@generator = Raxe::Generator.new( self )
+	end # initialize
 	
-	private
-		def self.append2file( file, content )
-			File.open( file, "a+" ) do |f|
-				f.puts content
-			end # File.open
-		end # self.writefile
+	def generate( generator_data )
+		@generator.generate( generator_data )
+	end # generate
 	
-		def self.gen( package, file )
-			path = File.join( self.out_path , package )
-			Dir.chdir( self.out_path )
-			Dir.mkdir( path ) unless FileTest.exists?( path )
-			Dir.chdir( path )
-			if FileTest.exists?( file.capitalize + ".hx" )
-				puts "Error: the package + file combo you've specified already exists!"
-				return
-			end # FileTest.exists?
-			File.open( file.capitalize + ".hx", "w+" ) do |f|
-				f.puts "package #{package};"
-			end # File.open
-			return File.join( path, file.capitalize + ".hx" )
-		end # self.gen
+	def install( installer_data = :install )
+		install_data = { 
+			:req => installer_data ,
+			:callback => lambda { p_check_conf }
+		} # install_data
+		@installer.install( install_data )
+	end # install
+	
+	def destroy( destroyer_data )
+#		Raxe::Destroyer.destroy( destroy_data )
+	end # destroy
+	
+	def build( builder_data )
+#		Raxe::Builder.build( builder_data )
+	end # build
+	
+	private 
+		def p_check_conf
+			conf_path = File.join( Dir.pwd, ".raxeconf" )
+			if FileTest.exists?( conf_path )
+				File.open( conf_path, "r" ) do |f|
+					while line = f.gets
+						item = line.split( "!!!" )
+						@paths[item[0]] = item[1].strip
+					end # while
+				end # File.open
+				@setup_flag = true
+			else # if file exists
+				@setup_flag = false
+				@paths = {}
+			end # if file exists
+		end # p_check_conf
 end # Raxe
-
-

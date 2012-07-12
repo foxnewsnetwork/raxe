@@ -55,6 +55,4 @@ end
 
 $: << File.join( File.dirname( __FILE__ )  , "lib" )
 require "raxe"
-Raxe::Tasks.new do |raxe|
-
-end # raxe
+Raxe::Tasks.new( Raxe.new )
