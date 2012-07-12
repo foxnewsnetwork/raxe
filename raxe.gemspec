@@ -28,6 +28,9 @@ Gem::Specification.new do |s|
     "bin/raxe",
     "lib/raxe.rb",
     "raxe.gemspec",
+    "spec/generator/raxe_generator_spec.rb",
+    "spec/installer/raxe_installer_spec.rb",
+    "spec/raxe_object_spec.rb",
     "test/helper.rb",
     "test/test_raxe.rb"
   ]
