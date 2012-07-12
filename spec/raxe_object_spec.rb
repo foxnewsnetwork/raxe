@@ -121,4 +121,88 @@ describe Raxe do
 			end # expected
 		end # it
 	end # ungeneration
+	describe "commands" do
+		before(:each) do
+			@raxe = Raxe.new
+		end # before each
+		describe "installation" do
+			after(:each) do
+				@raxe.install(:uninstall)
+			end # after each
+			it "should faciliate a proper installation" do
+				@raxe.commands( ["install"] )
+				@raxe.setup_flag.should be_true
+			end # it
+		end # installation
+		describe "uninstallation" do
+			before(:each) do
+				@raxe.install
+			end # before each
+			it "should faciliatate a proper uninstallation" do
+				@raxe.commands( ["uninstall"] )
+				@raxe.setup_flag.should be_false
+			end # it
+		end # uninstallation
+		describe "generation" do
+			before(:each) do
+				@raxe.install
+				@package = "dickfag"
+				@file = "trevor"
+				suffix = ['','data','spec']
+				@expected = { 
+					:files => suffix.map { | x | File.join(@raxe.paths['source'], File.join( @package + x, @file.capitalize + x.capitalize + ".hx" ) ) } ,
+					:folders => suffix.map { |x| File.join( @raxe.paths['source'], @package + x ) } 
+				} # expected
+			end # before each
+			after(:each) do
+				@raxe.generate( :req => :ungenerate, :package => @package, :file => @file )
+				@raxe.install(:uninstall)
+			end # after each
+			it "should do a proper generation" do
+				@raxe.commands( ['generate', @package, @file] )
+				@expected[:files].each do | file |
+					FileTest.exists?( file ).should be_true
+				end # expected files
+				@expected[:folders].each do | folder |
+					Dir.exists?( folder ).should be_true
+				end # expected folders
+			end # it
+		end # generation
+		describe "ungeneration" do
+			before( :each ) do
+				@raxe.install
+				@package = "dickfag"
+				@file = "trevor"
+				suffix = ['','data','spec']
+				@expected = { 
+					:files => suffix.map { | x | File.join(@raxe.paths['source'], File.join( @package + x, @file.capitalize + x.capitalize + ".hx" ) ) } ,
+					:folders => suffix.map { |x| File.join( @raxe.paths['source'], @package + x ) } 
+				} # expected
+				@raxe.generate( :req => :generate, :package => @package, :file => @file )
+			end # before each
+			after( :each ) do
+				@raxe.install( :uninstall )
+			end # after each
+			it "should allow a success ungeneration" do
+				@raxe.commands( ['ungenerate', @package, @file] )
+				@expected[:files].each do | file |
+					FileTest.exists?( file ).should be_false
+				end # expected files
+				@expected[:folders].each do | folder |
+					Dir.exists?( folder ).should be_false
+				end # expected folders
+			end # it
+		end # ungerneation
+		describe "routes" do
+			before(:each) do
+				@raxe.install
+			end # before each
+			after(:each) do
+				@raxe.install( :uninstall )
+			end # after each
+			it "should respond to a routes request" do
+				@raxe.commands( ['routes'] ).should eq(0)
+			end # it
+		end # routes
+	end # commands
 end # Raxe

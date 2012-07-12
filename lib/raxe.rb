@@ -1,6 +1,7 @@
 require "raxe/installer"
 require "raxe/generator"
 require "raxe/tasks"
+require "raxe/commands"
 
 # Raxe class
 class Raxe
@@ -14,6 +15,7 @@ class Raxe
 		# Step 2: Setup the components
 		@installer = Raxe::Installer.new( self )
 		@generator = Raxe::Generator.new( self )
+		@commands = Raxe::Commands.new( self )
 	end # initialize
 	
 	def generate( generator_data )
@@ -35,6 +37,10 @@ class Raxe
 	def build( builder_data )
 #		Raxe::Builder.build( builder_data )
 	end # build
+	
+	def commands( command_data )
+		@commands.command( command_data )
+	end # commands
 	
 	private 
 		def p_check_conf

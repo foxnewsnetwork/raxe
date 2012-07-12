@@ -1,4 +1,5 @@
 #!/usr/bin/ruby -Ilib
-# $:.each { |k| puts k }
+
 require "raxe"
-exit Raxe.generate( ARGV[0], ARGV[1] )
+raxe = Raxe.new
+exit raxe.commands( ARGV )
