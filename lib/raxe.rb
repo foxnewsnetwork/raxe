@@ -1,7 +1,8 @@
-require "raxe/installer"
-require "raxe/generator"
-require "raxe/tasks"
-require "raxe/commands"
+here = File.dirname __FILE__
+require "#{here}/raxe/installer"
+require "#{here}/raxe/generator"
+require "#{here}/raxe/tasks"
+require "#{here}/raxe/commands"
 
 # Raxe class
 class Raxe
