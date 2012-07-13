@@ -1,5 +1,11 @@
-#!/usr/bin/ruby -Ilib
+#!/usr/bin/env ruby
+begin
+	require "raxe"
+rescue 
+	here = File.expand_path(File.dirname __FILE__)
+	$:<< "#{here}/../lib"
+	require "raxe"
+end # clusterfuck
 
-require "raxe"
 raxe = Raxe.new
 exit raxe.commands( ARGV )
