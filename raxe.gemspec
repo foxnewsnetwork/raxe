@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "raxe"
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yuki Nagato", "Madotsuki"]
-  s.date = "2012-07-12"
+  s.date = "2012-07-13"
   s.description = "Written as a ruby gem, raxe is a series of macros for writing simpler haxe code for javascript compilation"
   s.email = "foxnewsnetwork@gmail.com"
   s.executables = ["raxe"]
