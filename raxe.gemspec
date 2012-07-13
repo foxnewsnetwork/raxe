@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = "raxe"
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Yuki Nagato", "Madotsuki"]
@@ -27,6 +27,12 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/raxe",
     "lib/raxe.rb",
+    "lib/raxe/builder.rb",
+    "lib/raxe/commands.rb",
+    "lib/raxe/destroyer.rb",
+    "lib/raxe/generator.rb",
+    "lib/raxe/installer.rb",
+    "lib/raxe/tasks.rb",
     "raxe.gemspec",
     "spec/commands/raxe_command_spec.rb",
     "spec/generator/raxe_generator_spec.rb",
